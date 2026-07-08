@@ -7,7 +7,7 @@ __pycache__/
 .ruff_cache/
 .DS_Store
 Thumbs.db
-work/
+work/# 屏蔽项目缓存、虚拟环境与输出文件
 
 rm-yolo-demo-starter/outputs/*
 !rm-yolo-demo-starter/outputs/.gitkeep
