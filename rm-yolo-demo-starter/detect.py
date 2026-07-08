@@ -52,7 +52,7 @@ def draw_detections(image, result):
         label = f"{class_name} {conf:.2f}"
         color = (255, 0, 255)
 
-        cv2.rectangle(image, (x1, y1), (x2, y2), color, 2)
+        cv2.rectangle(image, (x1, y1), (x2, y2), color, 2) # 绘制目标检测框
         cv2.putText(
             image,
             label,
@@ -62,7 +62,7 @@ def draw_detections(image, result):
             color,
             2,
             lineType=cv2.LINE_AA,
-        )
+        )# 绘制类别+置信度文字
 
 
 def run_image(source, model_path, output, conf, show=False):
@@ -70,15 +70,15 @@ def run_image(source, model_path, output, conf, show=False):
     if image is None:
         raise FileNotFoundError(f"Cannot read image: {source}")
 
-    model = YOLO(str(model_path))
-    results = model.predict(image, conf=conf, verbose=False)
+    model = YOLO(str(model_path))# 加载YOLO模型
+    results = model.predict(image, conf=conf, verbose=False)# 执行推理预测
 
     annotated = image.copy()
     if results:
         draw_detections(annotated, results[0])
 
-    output.parent.mkdir(parents=True, exist_ok=True)
-    if not cv2.imwrite(str(output), annotated):
+    output.parent.mkdir(parents=True, exist_ok=True)# 创建输出文件夹
+    if not cv2.imwrite(str(output), annotated): # 保存带标注的结果图
         raise RuntimeError(f"Failed to write result: {output}")
 
     if show:
@@ -91,7 +91,7 @@ def run_image(source, model_path, output, conf, show=False):
 
 def main():
     args = parse_args()
-    source = resolve_input_path(args.source)
+    source = resolve_input_path(args.source)# 读取输入文件路径
     model_path = resolve_input_path(args.model)
     output = resolve_output_path(args.output)
 
