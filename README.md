@@ -291,4 +291,3 @@ outputs/example_result.jpg
 - [ ] Push 到 GitHub。
 - [ ] 提交仓库链接和视频链接。
 
-DAY1 目标完成，yolo程序已成功运行，原始图片检测完成，01.png在中心偏右，Drone 0.82
